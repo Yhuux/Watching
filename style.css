@@ -1,41 +1,45 @@
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f5f5f5;
 }
 
 .container {
-    display: flex;
-    height: 100vh;
-}
-
-.sidebar {
-    width: 200px;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
 }
 
-.sidebar h1 {
-    font-size: 1.5em;
+h1 {
+    font-size: 24px;
     margin-bottom: 20px;
 }
 
-.sidebar nav ul {
-    list-style-type: none;
-    padding: 0;
-    flex-grow: 1;
+.content {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.sidebar nav ul li {
-    margin-bottom: 10px;
+.left {
+    flex: 1;
+    min-width: 200px;
 }
 
-.sidebar a {
+.right {
+    flex: 2;
+    min-width: 300px;
+}
+
+p {
+    margin: 0 0 10px 0;
+}
+
+a {
     text-decoration: none;
-    color: black;
+    color: #333;
 }
 
 .active {
@@ -44,22 +48,18 @@ body {
 
 .email-icon {
     font-size: 24px;
-    align-self: flex-start;
 }
 
+/* Estilos para a galeria na página index.html */
 .gallery {
-    flex-grow: 3;
-    padding: 20px;
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-start;
-    overflow-y: auto;
+    gap: 20px;
 }
 
 .gallery img {
     width: calc(33.333% - 20px);
-    height: 200px;
-    margin: 10px;
+    height: auto;
     object-fit: cover;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -88,30 +88,22 @@ body {
     object-fit: contain;
 }
 
-@media (max-width: 1024px) {
-    .gallery img {
-        width: calc(50% - 20px);
-        height: 150px;
-    }
-}
-
 @media (max-width: 768px) {
-    .container {
+    .content {
         flex-direction: column;
     }
 
-    .sidebar {
-        width: 100%;
-        padding: 10px;
-        height: auto;
-    }
-
-    .gallery {
-        padding: 10px;
+    .left, .right {
+        min-width: 100%;
     }
 
     .gallery img {
-        width: calc(100% - 20px);
-        height: 200px;
+        width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery img {
+        width: 100%;
     }
 }
