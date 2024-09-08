@@ -58,7 +58,7 @@ body {
 
 .gallery img {
     width: calc(33.333% - 20px);
-    padding-bottom: calc(33.333% - 20px);
+    height: 200px; /* Altura fija para todas las imágenes */
     margin: 10px;
     object-fit: cover;
     cursor: pointer;
@@ -70,6 +70,7 @@ body {
 }
 
 #fullscreenImage {
+    display: none; /* Oculto por defecto */
     position: fixed;
     top: 0;
     left: 0;
@@ -84,12 +85,13 @@ body {
 #fullscreenImage img {
     max-width: 90%;
     max-height: 90%;
+    object-fit: contain;
 }
 
 @media (max-width: 1024px) {
     .gallery img {
         width: calc(50% - 20px);
-        padding-bottom: calc(50% - 20px);
+        height: 150px; /* Ajustamos la altura para pantallas más pequeñas */
     }
 }
 
@@ -110,6 +112,6 @@ body {
 
     .gallery img {
         width: calc(100% - 20px);
-        padding-bottom: calc(100% - 20px);
+        height: 200px; /* Volvemos a ajustar la altura para móviles */
     }
 }
