@@ -1,8 +1,9 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     display: flex;
     height: 100vh;
+    font-size: 1.2vw;
 }
 
 .sidebar {
@@ -14,7 +15,7 @@ body {
 }
 
 .sidebar h1 {
-    font-size: 24px;
+    font-size: 1.5em;
     margin-bottom: 20px;
 }
 
@@ -28,7 +29,7 @@ body {
     margin-bottom: 10px;
 }
 
-.sidebar a, .content a {
+.sidebar a {
     text-decoration: none;
     color: black;
 }
@@ -54,36 +55,44 @@ body {
 .gallery img {
     width: 100%;
     height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-.container {
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+#fullscreenImage {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 20px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-.content {
-    display: flex;
-    margin-top: 20px;
-}
-
-.left {
-    width: 200px;
-}
-
-.right {
-    flex-grow: 1;
+#fullscreenImage img {
+    max-width: 90%;
+    max-height: 90%;
 }
 
 @media (max-width: 768px) {
     body {
         flex-direction: column;
+        font-size: 16px;
     }
 
-    .sidebar, .left {
+    .sidebar {
         width: 100%;
+        padding: 10px;
     }
 
-    .content {
-        flex-direction: column;
+    .gallery {
+        padding: 10px;
     }
 }
