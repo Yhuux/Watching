@@ -85,9 +85,24 @@ function initializeMetaverse() {
 
 function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js')
-            .then(registration => console.log('ServiceWorker registered successfully:', registration.scope))
-            .catch(error => console.log('ServiceWorker registration failed:', error));
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+                .then(registration => {
+                    console.log('ServiceWorker registered successfully:', registration.scope);
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // New service worker available, show refresh prompt to user
+                                if (confirm('New version available! Refresh to update?')) {
+                                    window.location.reload();
+                                }
+                            }
+                        });
+                    });
+                })
+                .catch(error => console.log('ServiceWorker registration failed:', error));
+        });
     }
 }
 
