@@ -4,42 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marcel Amestí</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+
+    <!-- Preload de las fuentes para mejorar la velocidad de carga -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" as="style">
+    <link rel="preload" href="https://fonts.gstatic.com" crossorigin as="font">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="style.css" defer>
+
+    <!-- Favicon -->
     <link rel="icon" href="images/28.webp" type="image/x-icon"/>
+    
+    <!-- Descripción para SEO -->
     <meta name="description" content="Galería de arte de Marcel Amestí">
 </head>
 <body>
     <div class="container">
         <div class="content">
-            <div class="left">
+            <header class="left">
                 <h1>Marcel Amestí</h1>
-                <nav>
+                <nav aria-label="Main navigation">
                     <ul>
-                        <li><a href="info.html">info</a></li>
-                        <li><a href="mailto:seelegallery@gmail.com" class="email-icon" aria-label="Email">
-                            <span class="material-icons">email</span>
-                        </a></li>
+                        <li><a href="info.html" aria-label="Información sobre Marcel Amestí">info</a></li>
+                        <li>
+                            <a href="mailto:seelegallery@gmail.com" class="email-icon" aria-label="Enviar email">
+                                <span class="material-icons" aria-hidden="true">email</span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
-            </div>
-            <div class="divider"></div>
-            <div class="right">
-                <div id="imageGallery" class="gallery">
+            </header>
+            <div class="divider" aria-hidden="true"></div>
+            <section class="right">
+                <div id="imageGallery" class="gallery" aria-live="polite" aria-label="Galería de imágenes">
                     <!-- Las imágenes se cargarán dinámicamente con JavaScript -->
                 </div>
-            </div>
+            </section>
         </div>
     </div>
-    <div id="fullscreenImage" onclick="closeFullscreen()">
+
+    <!-- Vista en pantalla completa para las imágenes -->
+    <div id="fullscreenImage" onclick="closeFullscreen()" aria-label="Cerrar imagen en pantalla completa" tabindex="0">
         <img src="" alt="Imagem em tela cheia" loading="lazy">
     </div>
+
+    <!-- Sección oculta para el contenido del metaverso -->
     <div id="metaverseContainer" style="display: none;">
         <!-- Aquí irá el contenido del metaverse -->
     </div>
+
+    <!-- Carga de JavaScript diferida -->
     <script src="script.js" defer></script>
 </body>
 </html>
