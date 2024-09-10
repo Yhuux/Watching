@@ -1,8 +1,15 @@
 /* Critical CSS */
+:root {
+    --primary-color: #202124;
+    --hover-color: #1a73e8;
+    --divider-color: #dadce0;
+    --gallery-box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px rgba(60, 64, 67, 0.15);
+}
+
 body {
     font-family: 'Roboto', Arial, sans-serif;
     font-size: 14px;
-    color: #202124;
+    color: var(--primary-color);
     background-color: #fff;
     margin: 0;
     padding: 0;
@@ -26,8 +33,14 @@ body {
     object-fit: cover;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+    box-shadow: var(--gallery-box-shadow);
     border-radius: 8px;
+    will-change: transform, box-shadow;
+}
+
+.gallery img:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 3px rgba(60, 64, 67, 0.3), 0 4px 8px rgba(60, 64, 67, 0.15);
 }
 
 /* Non-critical CSS */
@@ -63,7 +76,7 @@ body {
 
 .divider {
     width: 1px;
-    background-color: #dadce0;
+    background-color: var(--divider-color);
     margin: 0 20px;
 }
 
@@ -71,7 +84,7 @@ h1 {
     font-size: 22px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: #202124;
+    color: var(--primary-color);
 }
 
 nav ul {
@@ -84,18 +97,18 @@ nav ul li {
 }
 
 a {
-    color: #202124;
+    color: var(--primary-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #1a73e8;
+    color: var(--hover-color);
 }
 
-.gallery img:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15);
+a:focus {
+    outline: 2px dashed var(--hover-color);
+    outline-offset: 4px;
 }
 
 #fullscreenImage {
