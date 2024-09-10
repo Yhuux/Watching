@@ -4,6 +4,7 @@ function createImageElement(index) {
     const img = document.createElement('img');
     img.dataset.src = `images/${index}.jpg`;
     img.alt = `Imagem ${index}`;
+    img.loading = "lazy";
     img.addEventListener('click', () => openFullscreen(`images/${index}.jpg`));
     return img;
 }
@@ -15,22 +16,12 @@ function lazyLoadImages() {
                 const img = entry.target;
                 const src = img.dataset.src;
                 
-                // Cargar una versión de menor resolución primero
-                const lowResSrc = src.replace('.jpg', '-low.jpg');
-                img.src = lowResSrc;
-
-                // Luego cargar la versión de alta resolución
-                const highResImage = new Image();
-                highResImage.onload = () => {
-                    img.src = src;
-                };
-                highResImage.src = src;
-
+                img.src = src;
                 img.removeAttribute('data-src');
                 observer.unobserve(img);
             }
         });
-    }, { rootMargin: "0px 0px 200px 0px" });
+    }, { rootMargin: "200px" });
 
     document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
 }
@@ -59,6 +50,19 @@ function initializeGallery() {
     lazyLoadImages();
 }
 
+function initializeMetaverse() {
+    const enterMetaverseButton = document.getElementById('enterMetaverse');
+    const metaverseContainer = document.getElementById('metaverseContainer');
+
+    enterMetaverseButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        metaverseContainer.style.display = 'block';
+        // Aquí iría la lógica para cargar y mostrar el metaverse
+        // Por ahora, solo mostraremos un mensaje
+        metaverseContainer.innerHTML = '<h2>Welcome to the Metaverse!</h2><p>This is where the 3D gallery would be loaded.</p>';
+    });
+}
+
 function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js')
@@ -69,6 +73,7 @@ function registerServiceWorker() {
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeGallery();
+    initializeMetaverse();
     registerServiceWorker();
 });
 
