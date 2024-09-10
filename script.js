@@ -14,7 +14,18 @@ function lazyLoadImages() {
             if (entry.isIntersecting) {
                 const img = entry.target;
                 const src = img.dataset.src;
-                img.src = src;
+                
+                // Cargar una versión de menor resolución primero
+                const lowResSrc = src.replace('.jpg', '-low.jpg');
+                img.src = lowResSrc;
+
+                // Luego cargar la versión de alta resolución
+                const highResImage = new Image();
+                highResImage.onload = () => {
+                    img.src = src;
+                };
+                highResImage.src = src;
+
                 img.removeAttribute('data-src');
                 observer.unobserve(img);
             }
@@ -40,9 +51,11 @@ function closeFullscreen() {
 
 function initializeGallery() {
     const gallery = document.getElementById('imageGallery');
+    const fragment = document.createDocumentFragment();
     for (let i = 1; i <= TOTAL_IMAGES; i++) {
-        gallery.appendChild(createImageElement(i));
+        fragment.appendChild(createImageElement(i));
     }
+    gallery.appendChild(fragment);
     lazyLoadImages();
 }
 
