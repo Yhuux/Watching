@@ -1,117 +1,130 @@
 body {
-  font-family: 'Roboto', Arial, sans-serif;
-  font-size: 18px;
-  color: #202124;
-  background-color: #fff;
-  margin: 0;
-  padding: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 14px;
+    color: #202124;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-h1 {
-  font-size: 28px;
-  font-weight: 500;
-  margin-bottom: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .left {
-  flex: 1;
-  min-width: 200px;
+    flex: 1;
+    padding-right: 20px;
 }
 
 .right {
-  flex: 2;
-  min-width: 300px;
+    flex: 3;
 }
 
-p {
-  margin: 0 0 10px 0;
-  line-height: 1.5;
+.divider {
+    width: 1px;
+    background-color: #dadce0;
+    margin: 0 20px;
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #202124;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin-bottom: 10px;
 }
 
 a {
-  color: #1a73e8;
-  text-decoration: none;
+    color: #1a73e8;
+    text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
-}
-
-.active {
-  font-weight: 500;
+    text-decoration: underline;
 }
 
 .email-icon {
-  font-size: 28px;
-  color: #5f6368;
+    font-size: 24px;
+    color: #5f6368;
 }
 
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
 .gallery img {
-  width: calc(33.333% - 20px);
-  height: auto;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 16px);
+    height: auto;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+    border-radius: 8px;
 }
 
 .gallery img:hover {
-  transform: scale(1.05);
+    transform: translateY(-1px);
+    box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15);
 }
 
 #fullscreenImage {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
 #fullscreenImage img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
 }
 
 @media (max-width: 768px) {
-  .content {
-    flex-direction: column;
-  }
+    .content {
+        flex-direction: column;
+    }
 
-  .left, .right {
-    min-width: 100%;
-  }
+    .left, .right {
+        width: 100%;
+    }
 
-  .gallery img {
-    width: calc(50% - 10px);
-  }
+    .divider {
+        width: 100%;
+        height: 1px;
+        margin: 20px 0;
+    }
+
+    .gallery img {
+        width: calc(50% - 8px);
+    }
 }
 
 @media (max-width: 480px) {
-  .gallery img {
-    width: 100%;
-  }
+    .gallery img {
+        width: 100%;
+    }
 }
