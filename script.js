@@ -2,10 +2,10 @@ const TOTAL_IMAGES = 27;
 
 function createImageElement(index) {
     const img = document.createElement('img');
-    img.dataset.src = `images/${index}.jpg`;
+    img.dataset.src = `images/${index}.webp`;
     img.alt = `Imagem ${index}`;
     img.loading = "lazy";
-    img.addEventListener('click', () => openFullscreen(`images/${index}.jpg`));
+    img.addEventListener('click', () => openFullscreen(`images/${index}.webp`));
     return img;
 }
 
