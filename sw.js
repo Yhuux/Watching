@@ -3,9 +3,9 @@ const TOTAL_IMAGES = 27;
 
 const URLS_TO_CACHE = [
     '/',
-    '/index.html',
-    '/style.css',
-    '/script.js',
+    'index.html',
+    'style.css',
+    'script.js',
     ...Array.from({length: TOTAL_IMAGES}, (_, i) => `/images/${i + 1}.jpg`)
 ];
 
