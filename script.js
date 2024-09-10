@@ -11,20 +11,28 @@ function createImageElement(index) {
 }
 
 function lazyLoadImages() {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                const src = img.dataset.src;
-                
-                img.src = src;
-                img.removeAttribute('data-src');
-                observer.unobserve(img);
-            }
-        });
-    }, { rootMargin: "200px" });
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.dataset.src;
+                    
+                    img.src = src;
+                    img.removeAttribute('data-src');
+                    observer.unobserve(img);
+                }
+            });
+        }, { rootMargin: "200px" });
 
-    document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+        document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+    } else {
+        // Fallback for browsers that don't support IntersectionObserver
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+        });
+    }
 }
 
 function openFullscreen(index) {
@@ -34,21 +42,21 @@ function openFullscreen(index) {
     fullscreenDiv.style.display = 'flex';
     document.body.style.overflow = 'hidden';
     
-    // Add opening animation
-    fullscreenImg.style.opacity = '0';
-    fullscreenImg.style.transform = 'scale(0.9)';
-    setTimeout(() => {
-        fullscreenImg.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
-        fullscreenImg.style.opacity = '1';
-        fullscreenImg.style.transform = 'scale(1)';
-    }, 50);
+    requestAnimationFrame(() => {
+        fullscreenImg.style.opacity = '0';
+        fullscreenImg.style.transform = 'scale(0.9)';
+        requestAnimationFrame(() => {
+            fullscreenImg.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
+            fullscreenImg.style.opacity = '1';
+            fullscreenImg.style.transform = 'scale(1)';
+        });
+    });
 }
 
 function closeFullscreen() {
     const fullscreenDiv = document.getElementById('fullscreenImage');
     const fullscreenImg = fullscreenDiv.querySelector('img');
     
-    // Add closing animation
     fullscreenImg.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
     fullscreenImg.style.opacity = '0';
     fullscreenImg.style.transform = 'scale(0.9)';
@@ -109,7 +117,6 @@ function registerServiceWorker() {
 document.addEventListener('DOMContentLoaded', () => {
     initializeGallery();
     initializeMetaverse();
-    registerServiceWorker();
 });
 
 document.addEventListener('keydown', (e) => {
@@ -117,3 +124,6 @@ document.addEventListener('keydown', (e) => {
         closeFullscreen();
     }
 });
+
+// Defer non-critical JavaScript
+window.addEventListener('load', registerServiceWorker);
