@@ -52,10 +52,11 @@ nav ul li {
 a {
     color: #202124;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: #1a73e8;
 }
 
 .email-icon {
@@ -64,14 +65,14 @@ a:hover {
 }
 
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
 }
 
 .gallery img {
-    width: calc(33.333% - 16px);
-    height: auto;
+    width: 100%;
+    height: 200px;
     object-fit: cover;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -80,7 +81,7 @@ a:hover {
 }
 
 .gallery img:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
     box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15);
 }
 
@@ -118,13 +119,13 @@ a:hover {
         margin: 20px 0;
     }
 
-    .gallery img {
-        width: calc(50% - 8px);
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
 
 @media (max-width: 480px) {
-    .gallery img {
-        width: 100%;
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
 }
