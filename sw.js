@@ -7,7 +7,7 @@ self.addEventListener('install', event => {
                 '/',
                 '/index.html',
                 '/style.css',
-                '/optimized-script.js',
+                '/script.js',
                 // Añade aquí otros recursos estáticos que quieras cachear
             ]);
         })
