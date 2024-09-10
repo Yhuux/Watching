@@ -1,1 +1,11 @@
-...
+{
+  "scripts": {
+    "build": "tsc",                          // Compila el código TypeScript a JavaScript
+    "watch": "tsc --watch",                  // Compila en tiempo real mientras editas los archivos
+    "start": "live-server dist"              // Inicia un servidor en la carpeta dist
+  },
+  "devDependencies": {
+    "typescript": "^4.x",                    // Asegúrate de tener TypeScript instalado como dependencia de desarrollo
+    "live-server": "^1.x"                    // Live-server para desarrollo local rápido
+  }
+}
