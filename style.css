@@ -1,8 +1,36 @@
-/* Optimización de fuentes */
-* {
-    font-display: swap;
+/* Critical CSS */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 14px;
+    color: #202124;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+    border-radius: 8px;
+}
+
+/* Non-critical CSS */
 @font-face {
     font-family: 'Roboto';
     src: local('Roboto'), url('https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxK.woff2') format('woff2');
@@ -17,22 +45,6 @@
     font-weight: 500;
     font-style: normal;
     font-display: swap;
-}
-
-/* Estilos generales */
-body {
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: 14px;
-    color: #202124;
-    background-color: #fff;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
 }
 
 .content {
@@ -81,27 +93,6 @@ a:hover {
     color: #1a73e8;
 }
 
-.email-icon {
-    font-size: 24px;
-    color: #5f6368;
-}
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-}
-
-.gallery img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
-    border-radius: 8px;
-}
-
 .gallery img:hover {
     transform: translateY(-2px);
     box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15);
@@ -126,7 +117,6 @@ a:hover {
     object-fit: contain;
 }
 
-/* Estilos para el metaverse */
 #metaverseContainer {
     position: fixed;
     top: 0;
@@ -155,13 +145,6 @@ a:hover {
     background-color: #45a049;
 }
 
-/* Optimización para imágenes */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Mejora del rendimiento de las animaciones */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
@@ -171,7 +154,6 @@ img {
     }
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .content {
         flex-direction: column;
