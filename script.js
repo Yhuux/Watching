@@ -38,34 +38,36 @@ function lazyLoadImages() {
 function openFullscreen(index) {
     const fullscreenDiv = document.getElementById('fullscreenImage');
     const fullscreenImg = fullscreenDiv.querySelector('img');
+    
     fullscreenImg.src = `images/${index}.webp`;
     fullscreenDiv.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    
-    requestAnimationFrame(() => {
-        fullscreenImg.style.opacity = '0';
-        fullscreenImg.style.transform = 'scale(0.9)';
-        requestAnimationFrame(() => {
-            fullscreenImg.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
-            fullscreenImg.style.opacity = '1';
-            fullscreenImg.style.transform = 'scale(1)';
-        });
-    });
+
+    // Animación de apertura
+    animateFullscreenImage(fullscreenImg, 0, 0.9, 1, 1);
 }
 
 function closeFullscreen() {
     const fullscreenDiv = document.getElementById('fullscreenImage');
     const fullscreenImg = fullscreenDiv.querySelector('img');
-    
-    fullscreenImg.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
-    fullscreenImg.style.opacity = '0';
-    fullscreenImg.style.transform = 'scale(0.9)';
-    
+
+    // Animación de cierre
+    animateFullscreenImage(fullscreenImg, 1, 1, 0, 0.9);
+
     setTimeout(() => {
         fullscreenDiv.style.display = 'none';
         document.body.style.overflow = 'auto';
-        fullscreenImg.style.transition = '';
     }, 300);
+}
+
+function animateFullscreenImage(img, initialOpacity, initialScale, finalOpacity, finalScale) {
+    img.style.opacity = initialOpacity;
+    img.style.transform = `scale(${initialScale})`;
+    requestAnimationFrame(() => {
+        img.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
+        img.style.opacity = finalOpacity;
+        img.style.transform = `scale(${finalScale})`;
+    });
 }
 
 function initializeGallery() {
@@ -97,19 +99,20 @@ function registerServiceWorker() {
             navigator.serviceWorker.register('sw.js')
                 .then(registration => {
                     console.log('ServiceWorker registered successfully:', registration.scope);
+
                     registration.addEventListener('updatefound', () => {
                         const newWorker = registration.installing;
                         newWorker.addEventListener('statechange', () => {
                             if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                // New service worker available, show refresh prompt to user
-                                if (confirm('New version available! Refresh to update?')) {
+                                // Nueva versión disponible, mostrar prompt de recarga
+                                if (confirm('Nova versão disponível! Deseja atualizar?')) {
                                     window.location.reload();
                                 }
                             }
                         });
                     });
                 })
-                .catch(error => console.log('ServiceWorker registration failed:', error));
+                .catch(error => console.log('Falha ao registrar ServiceWorker:', error));
         });
     }
 }
@@ -125,5 +128,4 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Defer non-critical JavaScript
 window.addEventListener('load', registerServiceWorker);
