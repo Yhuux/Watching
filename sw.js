@@ -6,8 +6,8 @@ const URLS_TO_CACHE = [
     'index.html',
     'style.css',
     'script.js',
-    ...Array.from({length: TOTAL_IMAGES}, (_, i) => `/images/${i + 1}.jpg`),
-    ...Array.from({length: TOTAL_IMAGES}, (_, i) => `/images/${i + 1}-low.jpg`)
+    ...Array.from({length: TOTAL_IMAGES}, (_, i) => `/images/${i + 1}.webp`),
+    ...Array.from({length: TOTAL_IMAGES}, (_, i) => `/images/${i + 1}-low.webp`)
 ];
 
 self.addEventListener('install', event => {
