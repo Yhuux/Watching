@@ -1,4 +1,4 @@
-const CACHE_NAME = 'marcel-amesti-cache-v1';
+const CACHE_NAME = 'marcel-amesti-cache-v2';
 const TOTAL_IMAGES = 27;
 
 const URLS_TO_CACHE = [
@@ -6,7 +6,8 @@ const URLS_TO_CACHE = [
     'index.html',
     'style.css',
     'script.js',
-    ...Array.from({length: TOTAL_IMAGES}, (_, i) => `/images/${i + 1}.jpg`)
+    ...Array.from({length: TOTAL_IMAGES}, (_, i) => `/images/${i + 1}.jpg`),
+    ...Array.from({length: TOTAL_IMAGES}, (_, i) => `/images/${i + 1}-low.jpg`)
 ];
 
 self.addEventListener('install', event => {
