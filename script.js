@@ -2,10 +2,11 @@ const TOTAL_IMAGES = 27;
 
 function createImageElement(index) {
     const img = document.createElement('img');
-    img.dataset.src = `images/${index}.webp`;
+    img.dataset.src = `images/${index}-low.webp`;
+    img.dataset.fullsrc = `images/${index}.webp`;
     img.alt = `Imagem ${index}`;
     img.loading = "lazy";
-    img.addEventListener('click', () => openFullscreen(`images/${index}.webp`));
+    img.addEventListener('click', () => openFullscreen(index));
     return img;
 }
 
@@ -26,18 +27,37 @@ function lazyLoadImages() {
     document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
 }
 
-function openFullscreen(src) {
+function openFullscreen(index) {
     const fullscreenDiv = document.getElementById('fullscreenImage');
     const fullscreenImg = fullscreenDiv.querySelector('img');
-    fullscreenImg.src = src;
+    fullscreenImg.src = `images/${index}.webp`;
     fullscreenDiv.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    
+    // Add opening animation
+    fullscreenImg.style.opacity = '0';
+    fullscreenImg.style.transform = 'scale(0.9)';
+    setTimeout(() => {
+        fullscreenImg.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
+        fullscreenImg.style.opacity = '1';
+        fullscreenImg.style.transform = 'scale(1)';
+    }, 50);
 }
 
 function closeFullscreen() {
     const fullscreenDiv = document.getElementById('fullscreenImage');
-    fullscreenDiv.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    const fullscreenImg = fullscreenDiv.querySelector('img');
+    
+    // Add closing animation
+    fullscreenImg.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
+    fullscreenImg.style.opacity = '0';
+    fullscreenImg.style.transform = 'scale(0.9)';
+    
+    setTimeout(() => {
+        fullscreenDiv.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        fullscreenImg.style.transition = '';
+    }, 300);
 }
 
 function initializeGallery() {
@@ -54,20 +74,20 @@ function initializeMetaverse() {
     const enterMetaverseButton = document.getElementById('enterMetaverse');
     const metaverseContainer = document.getElementById('metaverseContainer');
 
-    enterMetaverseButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        metaverseContainer.style.display = 'block';
-        // Aquí iría la lógica para cargar y mostrar el metaverse
-        // Por ahora, solo mostraremos un mensaje
-        metaverseContainer.innerHTML = '<h2>Welcome to the Metaverse!</h2><p>This is where the 3D gallery would be loaded.</p>';
-    });
+    if (enterMetaverseButton && metaverseContainer) {
+        enterMetaverseButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            metaverseContainer.style.display = 'block';
+            metaverseContainer.innerHTML = '<h2>Welcome to the Metaverse!</h2><p>This is where the 3D gallery would be loaded.</p>';
+        });
+    }
 }
 
 function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js')
-            .then(registration => console.log('ServiceWorker registrado con éxito:', registration.scope))
-            .catch(error => console.log('Registro de ServiceWorker fallido:', error));
+            .then(registration => console.log('ServiceWorker registered successfully:', registration.scope))
+            .catch(error => console.log('ServiceWorker registration failed:', error));
     }
 }
 
