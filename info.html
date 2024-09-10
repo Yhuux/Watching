@@ -4,30 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marcel Amestí - Informações</title>
- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link
+
+    <!-- Preload y fuentes de Google -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Hoja de estilos -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
     <link rel="icon" href="images/28.webp" type="image/x-icon"/>
+
+    <!-- Descripción para SEO -->
+    <meta name="description" content="Informações de contato e redes sociais de Marcel Amestí">
 </head>
 <body>
     <div class="container">
         <h1>Marcel Amestí</h1>
         <div class="content">
             <div class="left">
-                <nav>
-                <ul>
-                    <li><a href="index.html">portfolio</a></li>
-                    <li><a href="mailto:seelegallery@gmail.com" class="email-icon">
-                <span class="material-icons">email</span></a></li>
-                </ul>
+                <nav aria-label="Main navigation">
+                    <ul>
+                        <li><a href="index.html" aria-label="Portfólio de Marcel Amestí">portfolio</a></li>
+                        <li>
+                            <a href="mailto:seelegallery@gmail.com" class="email-icon" aria-label="Enviar email">
+                                <span class="material-icons" aria-hidden="true">email</span>
+                            </a>
+                        </li>
+                    </ul>
                 </nav>
             </div>
             <div class="right">
-                <p><strong>consultas:</strong></p>
-                <p>seelegallery@gmail.com</p>
-                <p><strong>instagram:</strong></p>
-                <p>@marcelhamesti</p>
+                <p><strong>Consultas:</strong></p>
+                <p><a href="mailto:seelegallery@gmail.com" aria-label="Enviar email">seelegallery@gmail.com</a></p>
+                <p><strong>Instagram:</strong></p>
+                <p><a href="https://instagram.com/marcelhamesti" target="_blank" rel="noopener noreferrer" aria-label="Ver perfil de Instagram de Marcel Amestí">@marcelhamesti</a></p>
             </div>
         </div>
     </div>
