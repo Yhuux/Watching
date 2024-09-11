@@ -103,7 +103,3 @@ async function fetchAndCache(request, cacheName) {
     }
     return networkResponse;
 }
-
-El service work 
-
-Lis
