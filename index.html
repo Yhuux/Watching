@@ -5,23 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marcel Amestí</title>
 
-    <!-- Preload de las fuentes para mejorar la velocidad de carga -->
+    <!-- Preconexión y DNS-prefetch -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+
+    <!-- Preload de fuentes -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" as="style">
-    <link rel="preload" href="https://fonts.gstatic.com" crossorigin as="font">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- Hoja de estilos -->
-    <!-- Preload para CSS crítico -->
-<link rel="preload" href="style.css" as="style">
-<link rel="stylesheet" href="style.css" defer>
-
-<!-- Preload de fuentes -->
-<link rel="preload" href="https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxK.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css" defer>
 
     <!-- Favicon -->
     <link rel="icon" href="images/28.webp" type="image/x-icon"/>
-    
+
     <!-- Descripción para SEO -->
     <meta name="description" content="Galería de arte de Marcel Amestí">
 </head>
@@ -44,20 +43,19 @@
             <div class="divider" aria-hidden="true"></div>
             <section class="right">
                 <div id="imageGallery" class="gallery" aria-live="polite" aria-label="Galería de imágenes">
-                    <!-- Las imágenes se cargarán dinámicamente con JavaScript -->
+                    <!-- Las imágenes se generarán automáticamente mediante JavaScript -->
                 </div>
             </section>
         </div>
     </div>
 
-    <!-- Vista en pantalla completa para las imágenes -->
     <div id="fullscreenImage" onclick="closeFullscreen()" aria-label="Cerrar imagen en pantalla completa" tabindex="0">
         <img src="" alt="Imagem em tela cheia" loading="lazy">
     </div>
 
     <!-- Sección oculta para el contenido del metaverso -->
     <div id="metaverseContainer" style="display: none;">
-        <!-- Aquí irá el contenido del metaverse -->
+        <!-- Aquí irá el contenido del metaverso -->
     </div>
 
     <!-- Carga de JavaScript diferida -->
