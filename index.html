@@ -1,30 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marcel Amestí</title>
 
-    <!-- Preconectar y Prefetch para acelerar las conexiones -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <!-- Cargar Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
-    <!-- Preload de fuentes -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" as="style">
-<head>
-    <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="preload" href="style.css" as="style">
+    <!-- Cargar estilos y fuentes -->
+    <link rel="stylesheet" href="style.css">
     
-    <!-- Hoja de estilos -->
-    <link rel="stylesheet" href="style.css" defer>
+    <!-- Preload de imágenes para mejorar el rendimiento -->
+    <link rel="preload" href="images/imagen1.webp" as="image" type="image/webp">
+    <link rel="preload" href="images/imagen1.avif" as="image" type="image/avif">
+    <link rel="preload" href="images/imagen1.jpg" as="image" type="image/jpeg">
 
-    <!-- Preload favicon para mejorar el tiempo de carga -->
-    <link rel="icon" href="images/28.webp" type="image/x-icon"/>
-
-    <!-- Descripción para SEO -->
-    <meta name="description" content="Galería de arte de Marcel Amestí">
 </head>
 <body>
     <div class="container">
@@ -35,8 +26,9 @@
                     <ul>
                         <li><a href="info.html" aria-label="Información sobre Marcel Amestí">info</a></li>
                         <li>
+                            <!-- Ícono de email usando Material Icons -->
                             <a href="mailto:seelegallery@gmail.com" class="email-icon" aria-label="Enviar email">
-                                <span class="material-icons" aria-hidden="true">email</span>
+                                <i class="material-icons">email</i> <!-- Esto debería mostrar el ícono -->
                             </a>
                         </li>
                     </ul>
@@ -45,7 +37,12 @@
             <div class="divider" aria-hidden="true"></div>
             <section class="right">
                 <div id="imageGallery" class="gallery" aria-live="polite" aria-label="Galería de imágenes">
-                    <!-- Las imágenes se cargarán dinámicamente con JavaScript -->
+                    <!-- Las imágenes con srcset -->
+                    <img 
+                        src="images/imagen1.jpg" 
+                        srcset="images/imagen1.avif 1200w, images/imagen1.webp 800w, images/imagen1.jpg 400w"
+                        sizes="(max-width: 1200px) 100vw, 1200px"
+                        alt="Descripción de la imagen">
                 </div>
             </section>
         </div>
@@ -53,15 +50,9 @@
 
     <!-- Vista en pantalla completa para las imágenes -->
     <div id="fullscreenImage" onclick="closeFullscreen()" aria-label="Cerrar imagen en pantalla completa" tabindex="0">
-        <img src="" alt="Imagem em tela cheia" loading="lazy">
+        <img src="" alt="Imagen en pantalla completa" loading="lazy">
     </div>
 
-    <!-- Sección oculta para el contenido del metaverso -->
-    <div id="metaverseContainer" style="display: none;">
-        <!-- Aquí irá el contenido del metaverse -->
-    </div>
-
-    <!-- Carga de JavaScript diferida -->
     <script src="script.js" defer></script>
 </body>
 </html>
