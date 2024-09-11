@@ -128,4 +128,4 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-window.addEventListener('load', registerServiceWorker);
+window.addEventListener('load', registerServiceWorker); a
