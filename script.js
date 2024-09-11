@@ -129,5 +129,3 @@ document.addEventListener('keydown', (e) => {
 });
 
 window.addEventListener('load', registerServiceWorker);
-
-Este es el Javascript 
